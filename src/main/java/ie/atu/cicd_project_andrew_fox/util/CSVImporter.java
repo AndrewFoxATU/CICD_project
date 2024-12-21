@@ -1,5 +1,5 @@
 package ie.atu.cicd_project_andrew_fox.util;
-//http://localhost:8080/h2-console/login.do?jsessionid=19ba9742b33d29cf221d11028ab50a5c
+
 import ie.atu.cicd_project_andrew_fox.model.Player;
 import ie.atu.cicd_project_andrew_fox.repository.PlayerRepository;
 import org.apache.commons.csv.CSVFormat;
@@ -13,7 +13,6 @@ import java.io.Reader;
 
 @Component
 public class CSVImporter {
-
     private final PlayerRepository playerRepository;
 
     public CSVImporter(PlayerRepository playerRepository) {
@@ -28,12 +27,12 @@ public class CSVImporter {
             CSVParser parser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader());
 
             for (CSVRecord record : parser) {
-                // Create a new player object
                 Player player = new Player();
                 player.setId(Long.parseLong(record.get("id")));
-                player.setWeb_name(record.get("web_name"));
+                player.setWeb_name(record.get("name"));
                 player.setPosition(record.get("position"));
                 player.setTeam(record.get("team"));
+                player.setNews(record.get("news"));
 
                 if (!playerRepository.existsById(player.getId())) {
                     playerRepository.save(player);
