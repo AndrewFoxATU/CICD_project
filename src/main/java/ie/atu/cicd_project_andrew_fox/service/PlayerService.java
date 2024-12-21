@@ -18,6 +18,10 @@ public class PlayerService {
         return repository.findAll();
     }
 
+    public List<Player> getPlayersByClub(String clubName) {
+        return repository.findByTeam(clubName);
+    }
+
     public Player savePlayer(Player player) {
         return repository.save(player);
     }

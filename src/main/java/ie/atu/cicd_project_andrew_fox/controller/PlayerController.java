@@ -19,4 +19,9 @@ public class PlayerController {
     public List<Player> getPlayers() {
         return service.getAllPlayers();
     }
+
+    @GetMapping("/{clubName}")
+    public List<Player> getPlayersByClub(@PathVariable String clubName) {
+        return service.getPlayersByClub(clubName);
+    }
 }
